@@ -7,6 +7,8 @@ from .utils import calling_razorpay
 from django.db import transaction
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAdminUser
 
 class PlaceOrderView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -51,3 +53,33 @@ class UserOrderListView(generics.ListAPIView):
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
+
+
+
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAdminUser
+from rest_framework.response import Response
+from .models import Order
+
+@api_view(['GET'])
+@permission_classes([IsAdminUser])
+def admin_order_list(request):
+    orders = Order.objects.all().order_by('-created_at')
+    data = []
+    for order in orders:
+        items = []
+        for item in order.items.all():
+            items.append({
+                'product_title': item.product.title,
+                'quantity': item.quantity,
+                'price': item.price,
+            })
+        data.append({
+            'id': order.id,
+            'user': order.user.username,
+            'total_amount': order.total_amount,
+            'created_at': order.created_at,
+            'items': items
+        })
+    return Response(data)
+

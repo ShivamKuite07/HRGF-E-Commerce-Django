@@ -24,8 +24,19 @@ const Navbar = () => {
         <Link to="/" style={{ color: '#fff' }}>Home</Link>
         <Link to="/cart" style={{ color: '#fff' }}>Cart</Link>
 
+
+        
+        {user?.username === 'admin' && (
+            <>
+            <Link to="/admin" >Admin Dashboard</Link>
+            <Link to="/admin/products">Manage Products</Link>
+            <Link to="/admin/orders">All Orders</Link>
+        </>
+        )}
+
         {user ? (
           <>
+            <Link to="/orders" style={{ color: '#fff' }}>My Orders</Link>
             <span>Hello, {user.username}</span>
             <button onClick={logout} style={{ background: '#f44', color: '#fff', border: 'none', padding: '5px 10px', cursor: 'pointer' }}>
               Logout
