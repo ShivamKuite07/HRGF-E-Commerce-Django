@@ -1,0 +1,9 @@
+Django>=4.2
+djangorestframework>=3.14
+djangorestframework-simplejwt>=5.3
+
+# For handling CORS (React frontend)
+django-cors-headers>=4.0
+
+# For environment variables (optional)
+python-decouple>=3.8
