@@ -128,6 +128,19 @@ const AdminDashboard = () => {
                   </li>
                 ))}
               </ul>
+              <select
+                value={order.status}
+                onChange={e => {
+                    axios.patch(`/orders/admin/orders/${order.id}/status/`, { status: e.target.value })
+                    .then(() => fetchOrders());
+                }}
+                >
+                <option value="pending">Pending</option>
+                <option value="shipped">Shipped</option>
+                <option value="delivered">Delivered</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="completed">Completed</option>
+            </select>
             </div>
           ))}
         </div>

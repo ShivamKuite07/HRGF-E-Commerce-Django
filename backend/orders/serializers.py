@@ -8,9 +8,15 @@ class OrderItemSerializer(serializers.ModelSerializer):
         model = OrderItem
         fields = ['id', 'product', 'product_title', 'quantity', 'price']
 
+
+
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
+    status = serializers.CharField(read_only=True)  # for users
+    # For admin, optionally allow write access:
+    # status = serializers.ChoiceField(choices=Order.STATUS_CHOICES)
 
     class Meta:
         model = Order
-        fields = ['id', 'total_amount', 'created_at', 'items']
+        fields = ['id', 'user', 'total_amount', 'status', 'created_at', 'items']
+

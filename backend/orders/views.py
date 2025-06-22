@@ -83,3 +83,23 @@ def admin_order_list(request):
         })
     return Response(data)
 
+
+
+
+
+@api_view(['PATCH'])
+@permission_classes([IsAdminUser])
+def update_order_status(request, pk):
+    try:
+        order = Order.objects.get(pk=pk)
+    except Order.DoesNotExist:
+        return Response({'error': 'Order not found'}, status=404)
+
+    new_status = request.data.get('status')
+    if new_status not in dict(Order.STATUS_CHOICES):
+        return Response({'error': 'Invalid status'}, status=400)
+
+    order.status = new_status
+    order.save()
+    return Response({'message': f'Status updated to {new_status}'})
+

@@ -37,6 +37,7 @@ const OrderHistory = () => {
                 </li>
               ))}
             </ul>
+            <p><strong>Status:</strong> {order.status}</p>
           </div>
         ))
       )}
