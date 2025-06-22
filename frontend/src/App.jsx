@@ -12,6 +12,10 @@ import AdminOrders from "./pages/AdminOrders";
 import AdminDashboard from "./pages/AdminDashboard";
 import { AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
+import './index.css'; // Ensure Tailwind CSS is imported
+
+
+
 
 const App = () => {
 
@@ -22,14 +26,19 @@ const App = () => {
   };
 
   return (
-    <>
+    <div>
       <Navbar />
+
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/orders" element={<OrderHistory />} />
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
         {/* Admin routes */}
         <Route path="/admin" element={
@@ -42,10 +51,8 @@ const App = () => {
         <Route path="/admin/orders" element={<AdminOrders />} />
 
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
       </Routes>
-    </>
+    </div>
   );
 };
 
