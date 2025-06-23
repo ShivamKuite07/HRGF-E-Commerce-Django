@@ -2,18 +2,33 @@ import { useEffect, useState, useContext } from 'react';
 import axios from '../api/axiosInstance';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
+import AdminOrders from './AdminOrders';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const { theme } = useContext(ThemeContext);
   const isDark = theme === 'dark';
 
+  const fetchProducts = async (query = '') => {
+    try {
+      const res = await axios.get(`/products/?search=${query}`);
+      setProducts(res.data);
+    } catch (err) {
+      console.error("Error fetching products", err);
+    }
+  };
+
   useEffect(() => {
-    axios.get('/products/')
-      .then(res => setProducts(res.data))
-      .catch(err => console.error("Error fetching products", err));
+    fetchProducts();
   }, []);
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    fetchProducts(value);
+  };
 
   return (
     <div
@@ -26,7 +41,18 @@ const Home = () => {
       }}
     >
       <Container>
-        <h2 className="text-center mb-5">🛍️ Welcome to the Store</h2>
+        <h2 className="text-center mb-4">🛍️ Welcome to the Store</h2>
+
+
+        <Form className="mb-5">
+          <Form.Control
+            type="text"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className={isDark ? 'bg-dark text-light' : ''}
+          />
+        </Form>
 
         <Row className="g-4">
           {products.map(product => (
@@ -67,7 +93,6 @@ const Home = () => {
                   </Card.Text>
                   <div className="mt-auto">
                     <p className="mb-2 fw-semibold">₹{product.price}</p>
-                    
                     <Link to={`/product/${product.id}`}>
                       <Button variant={isDark ? 'outline-light' : 'primary'} size="sm">
                         View Product

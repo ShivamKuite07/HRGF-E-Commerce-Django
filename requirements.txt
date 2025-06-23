@@ -11,3 +11,5 @@ python-decouple>=3.8
 # for image handling
 Pillow 
 
+django-filter
+

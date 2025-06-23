@@ -70,7 +70,7 @@ def admin_order_list(request):
         items = []
         for item in order.items.all():
             items.append({
-                'product_title': item.product.title,
+                'product_title': item.product.title if item.product else 'Deleted Product',
                 'quantity': item.quantity,
                 'price': item.price,
             })

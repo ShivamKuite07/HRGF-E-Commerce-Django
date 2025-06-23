@@ -32,7 +32,7 @@ const NavigationBar = () => {
             {user ? (
               <>
                 {!isAdmin && <Nav.Link as={Link} to="/orders">My Orders</Nav.Link>}
-                <Navbar.Text className="me-2">Hello, {user.username}</Navbar.Text>
+                <Navbar.Text className="me-2">Hello, {user.username.charAt(0).toUpperCase() + user.username.slice(1)}</Navbar.Text>
                 <Button variant="outline-danger" size="sm" onClick={logout}>Logout</Button>
               </>
             ) : (
