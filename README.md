@@ -16,6 +16,13 @@ An end-to-end E-commerce web application built using **Django REST Framework** f
 
 ---
 
+## 🎥 Demo video
+
+
+[👉 View here](https://drive.google.com/file/d/1KOUP90VESsdpYO3jClXcDwuBwR690l9k/view?usp=drive_link)
+
+---
+
 ## 🚀 Features
 
 ### 🛠 Backend (Django + DRF)
@@ -111,6 +118,8 @@ HRGF-E-Commerce-Django/
 │   ├── cart/           # Cart logic
 │   ├── orders/         # Order model, views
 │   └── media/          # Poster image uploads
+│   ├── manage.py       # manage.py for Django commands
+│   └── test.py         # Test cases for backend
 │
 ├── frontend/
 │   ├── components/     # Navbar, cards, etc.
@@ -142,7 +151,15 @@ Use the admin user to manage orders and products via admin dashboard UI.
 * Styling: Bootstrap 5
 * Tools: Vite, VS Code
 
-## Note: For more details on the architecture, refer to [ARCHITECTURE.md](ARCHITECTURE.md).
+---
+
+### Note: For more details on the architecture, refer to [ARCHITECTURE.md](ARCHITECTURE.md).
+
+### To run backend tests, be in backend directory and execute:
+
+```bash 
+python manage.py test
+```
 
 ---
 
