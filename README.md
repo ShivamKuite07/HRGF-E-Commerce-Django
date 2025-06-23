@@ -1,8 +1,12 @@
 
 
-### 📦 HRGF E-Commerce (Django + DRF + React)
+### 📦 HRGF E-Commerce (Django + DRF + React) - Shivam Kuite 🤖
 
 An end-to-end E-commerce web application built using **Django REST Framework** for the backend and **React with React-Bootstrap** for the frontend. It supports user authentication, product management, cart functionality, order placement, and a basic admin dashboard.
+
+---
+
+<img src ='title.png' />
 
 ---
 
@@ -54,13 +58,13 @@ def calling_razorpay(user, amount):
 
 ---
 
-## 🖼️ Screenshots
-
-Coming soon…
-
----
 
 ## 🛠 Installation & Setup
+
+```bash
+git clone https://github.com/ShivamKuite07/HRGF-E-Commerce-Django.git
+cd HRGF-E-Commerce-Django
+```
 
 ### 🔧 Backend (Django)
 
@@ -100,16 +104,20 @@ npm run dev
 ## 📂 Project Structure
 
 ```
+HRGF-E-Commerce-Django/
 ├── backend/
-│   ├── accounts/       # User auth
-│   ├── products/       # Product model & API
-│   ├── cart/           # Cart model & API
-│   ├── orders/         # Orders & order items
-│   └── ...
-├── frontend/           # React + React-Bootstrap frontend
-│   ├── components/
-│   ├── pages/
-│   └── ...
+│   ├── accounts/       # JWT auth
+│   ├── products/       # Product model & views
+│   ├── cart/           # Cart logic
+│   ├── orders/         # Order model, views
+│   └── media/          # Poster image uploads
+│
+├── frontend/
+│   ├── components/     # Navbar, cards, etc.
+│   ├── pages/          # Home, Login, Cart, etc.
+│   ├── context/        # Auth + ThemeContext
+│   └── index.css
+
 ```
 
 ---
@@ -134,6 +142,8 @@ Use the admin user to manage orders and products via admin dashboard UI.
 * Styling: Bootstrap 5
 * Tools: Vite, VS Code
 
+## Note: For more details on the architecture, refer to [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ---
 
 ## 🙋‍♂️ Author
@@ -146,8 +156,10 @@ Use the admin user to manage orders and products via admin dashboard UI.
 ## 🏁 Future Improvements
 
 * Real Razorpay/Stripe integration
-* Product search & filtering
-* Admin dashboard enhancements
+* Pagination
 * Product reviews & ratings
+* Responsive design upgrades
+* Upload multiple images per product
+* Dockerize deployment
 
 ---
